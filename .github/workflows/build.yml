@@ -30,12 +30,10 @@ jobs:
             libxinerama-dev \
             libxcursor-dev \
             libxi-dev \
-            libgl1-mesa-dev wayland-protocols libwayland-dev
+            libgl1-mesa-dev
 
       - name: Configure
         run: |
-          mkdir build
-          cd build
           if [ "${{ matrix.compiler }}" = "clang" ]; then
             export CC=clang
             export CXX=clang++
@@ -43,7 +41,7 @@ jobs:
             export CC=gcc
             export CXX=g++
           fi
-          cmake ..
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DGLFW_BUILD_WAYLAND=OFF -DGLFW_BUILD_X11=ON
 
       - name: Build
         run: |
