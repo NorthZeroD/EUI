@@ -25,7 +25,7 @@ jobs:
           else
             sudo apt install -y gcc g++
           fi
-          sudo apt install -y cmake
+          sudo apt install -y cmake wayland-protocols libwayland-dev
 
       - name: Configure
         run: |
